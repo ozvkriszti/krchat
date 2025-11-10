@@ -10,4 +10,8 @@ let cacheResponse = await cache.match(e.request); // Lookup
         return networkResponse; // Visszadjuk
     }
 }
-self.addEventListener("fetch", e => e.respondWith(impl(e))); // Eseményre feliratkozás
+self.addEventListener("fetch", e => e.respondWith(impl(e)));
+self.addEventListener("push", e => 
+    message = e.data ? e.data.text() : "No payload", 
+    e.waitUntil(self.registration.showNotification("Chat Notification", { body: data }))
+);
